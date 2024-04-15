@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terra Lapis Animation</title>
+</head>
+
+<body>
+    <style>
+        .terra_lapis {
+            display: flex;
+            margin: 80rem 192px;
+            justify-content: space-between;
+        }
+
+        .service {
+            margin-top: 150px;
+            padding-bottom: 135px;
+            /* width: 50% !important; */
+        }
+
+        .title {
+            color: #252525;
+            font-family: Neue Machina;
+            font-size: 42px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 106%;
+            letter-spacing: -1px;
+            margin: 18px 0 22px;
+        }
+
+        .description {
+            color: #5C5C5C;
+            font-family: "area-variable", sans-serif;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 23px;
+            margin: 32px 0 32px;
+        }
+
+
+        .service_link {
+            color: #fff;
+            font-family: "area-normal", sans-serif;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 160%;
+            letter-spacing: 0px;
+            text-decoration: none;
+            transition: all .3s;
+            border: 2px solid black;
+            background-color: black;
+            padding: 15px 35px 15px 35px;
+            border-radius: 25px;
+            margin-left: 70%;
+        }
+
+        .service_link:hover {
+            color: #fff;
+            fill: #fff;
+
+        }
+
+        .right_service {
+            padding-left: 70%;
+        }
+
+        .right_service img {
+            margin-bottom: -13px;
+        }
+
+        .service-hr,
+        .animated-hr {
+            border: solid 1px #CABBAC;
+        }
+
+
+        .service_divider_2 {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+
+        .dot {
+            position: absolute;
+            margin-left: -5.7px;
+        }
+    </style>
+
+    <section class="service_container">
+        <section class="terra_lapis">
+            <hr class="animated-hr">
+            <div class="service">
+                <div class="right_service">
+                    <img width="138" src="service_one.png"><img>
+                </div>
+
+
+                <div class="service_divider_2">
+
+                    <svg class="dot" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"
+                        fill="none">
+                        <circle cx="5" cy="5" r="5" fill="#001AFF" />
+                    </svg>
+                    <hr align="left" class="service-hr">
+                </div>
+
+                <h2 class="title right_service">Architectural Design</h2>
+
+                <p class="description right_service">
+                    We design spaces that balance aesthetics and functionality, telling compelling stories in every
+                    space.
+                    We design spaces that balance aesthetics and functionality, telling compelling stories in every
+                    space.
+                </p>
+
+                <a class="service_link" href="https://grep.co/co-managed-services/">Learn More <svg width="0.7em"
+                        xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 10.98 10.76">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill-rule: evenodd;
+                                    stroke-width: 0px;
+                                }
+                            </style>
+                        </defs>
+                        <g id="Layer_1-2" data-name="Layer 1">
+                            <polygon class="cls-1"
+                                points="10.98 0 10.98 10.76 9.48 10.76 9.48 2.34 1.06 10.76 0 9.69 8.2 1.5 .23 1.5 .23 0 10.98 0">
+                            </polygon>
+                        </g>
+                    </svg></a>
+            </div>
+        </section>
+    </section>
+
+
+
+
+    <!-- <script src="https://unpkg.com/split-type"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            gsap.registerPlugin(ScrollTrigger);
+            const hr = document.querySelector(".animated-hr");
+            const animated_section = document.querySelector(".terra_lapis");
+            const fullHeight = animated_section.getBoundingClientRect().height;
+
+
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".terra_lapis",
+                    ease: "none",
+                    start: "top 70%",
+                    end: "bottom 70%",
+                    scrub: true
+                }
+            });
+
+            const service = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".service-hr",
+                    start: "top 70%",
+                    end: "top 10%",
+                    scrub: true,
+                    ease: "none",
+                }
+            });
+
+
+            const fadeInText = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".service-hr",
+                    start: "top 60%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none none",
+                    scrub: true,
+                    ease: "none",
+                }
+            });
+
+            const dot = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".dot",
+                    start: "top 70%",
+                    end: "bottom 60%",
+                    scrub: true,
+                    ease: "none",
+                }
+            })
+
+            fadeInText.fromTo(".right_service", { opacity: 0 }, { opacity: 1, duration: 0.5, stagger: 0.2 });
+
+            dot.fromTo(".dot", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "none", });
+
+            service.fromTo(".service-hr", { width: "0%" }, { width: "100%", ease: "none", });
+
+            tl.fromTo(hr, { height: "0px" }, { height: fullHeight + "px", ease: "none" });
+        })
+
+    </script>
+
+</body>
+
+</html>
